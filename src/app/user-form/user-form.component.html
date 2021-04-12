@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+      <form [formGroup]="userInputForm" (ngSubmit)="onSubmit()">
+        <div>
+          <div class="form-group">
+            <label for="username">Input 1</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputOne"
+              formControlName="inputOne"
+            />
+            <span
+              class="help-block"
+              *ngIf="basicForm.inputOne.invalid && basicForm.inputOne.touched"
+            >
+              Input 1 is invalid
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="username">Input 2</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputTwo"
+              formControlName="inputTwo"
+            />
+            <span
+              class="help-block"
+              *ngIf="basicForm.inputTwo.invalid && basicForm.inputTwo.touched"
+            >
+              Input 2 is invalid
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="username">Input 3</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputThree"
+              formControlName="inputThree"
+            />
+            <span
+              class="help-block"
+              *ngIf="
+                basicForm.inputThree.invalid && basicForm.inputThree.touched
+              "
+            >
+              Input 3 is invalid
+            </span>
+          </div>
+        </div>
+        <!--
+        <div formArrayName="hobbies">
+          <h4>Hobbies</h4>
+          <button class="btn btn-default" type="button" (click)="onAddHobby()">
+            Add Hobby
+          </button>
+        </div> -->
+
+        <button
+          class="btn btn-default"
+          type="button"
+          class="btn btn-primary"
+          (click)="createClickHandler()"
+        >
+          Create
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

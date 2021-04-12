@@ -1,0 +1,99 @@
+<!-- <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="isPageDataLoaded">
+    <tr *ngFor="let item of userInputList; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ item.inputValue }}</td>
+      <td>
+        <button
+          class="btn btn-defaul"
+          (click)="getCombinationClickHandler(item)"
+        >
+          <i class="fa fa-eye" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+<!-- <h1>fsljfslfj {{ hasErrorOccured }}</h1> -->
+<div class="loader" *ngIf="!isPageDataLoaded && !hasErrorOccured">
+  <svg class="circular">
+    <circle
+      class="path"
+      cx="50"
+      cy="50"
+      r="20"
+      fill="none"
+      stroke-width="2"
+      stroke-miterlimit="10"
+    />
+  </svg>
+</div>
+
+<h1 *ngIf="hasErrorOccured">You do not enough permission!</h1>
+<div id="accordion" *ngIf="!hasErrorOccured">
+  <div class="card" *ngFor="let item of userInputList; let i = index">
+    <div class="card-header" [id]="'heading' + i">
+      <h5 class="mb-0">
+        <button
+          class="btn btn-link"
+          role="button"
+          data-toggle="collapse"
+          data-parent="#accordion"
+          [attr.data-target]="'#collapse' + i"
+          aria-expanded="true"
+          [attr.aria-controls]="'collapse' + i"
+          (click)="getCombinationClickHandler(item)"
+        >
+          {{ i + 1 }} : {{ item.inputValue }}
+        </button>
+      </h5>
+    </div>
+    <div
+      [id]="'collapse' + i"
+      class="panel-collapse collapse"
+      role="tabpanel"
+      [attr.aria-labelledby]="'heading' + i"
+    >
+      <div class="panel-body">
+        <div class="card-body" *ngIf="item.hasCombinationsLoaded">
+          <!-- {{ item.combinations | json }} -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Combination</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="isPageDataLoaded">
+              <tr *ngFor="let combinations of item.combinations; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ combinations.strCombination }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="loader" *ngIf="!item.hasCombinationsLoaded">
+          <svg class="circular">
+            <circle
+              class="path"
+              cx="50"
+              cy="50"
+              r="20"
+              fill="none"
+              stroke-width="2"
+              stroke-miterlimit="10"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
